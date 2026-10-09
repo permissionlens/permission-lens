@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "kind": "delegate-implementation",
+  "name": "EIP7702StatelessDeleGatorImpl",
+  "vendor": "MetaMask",
+  "version": "1.3.0",
+  "status": "recognized",
+  "match": {
+    "deployments": [
+      {
+        "chainId": 1,
+        "address": "0x63c0c19a282a1B52b07dD5a65b58948A07DAE32B"
+      }
+    ],
+    "codehash": "0x0b77e469f5603ed1e9ff0e7ee56238b61a8cf7cb3185b33e53e2eeaad50109ab"
+  },
+  "decoder": null,
+  "evidence": [
+    {
+      "type": "vendor-docs",
+      "url": "https://github.com/MetaMask/delegation-framework/blob/main/documents/Deployments.md"
+    },
+    {
+      "type": "vendor-docs",
+      "url": "https://github.com/MetaMask/delegation-toolkit/blob/main/packages/delegation-deployments/src/contractAddresses.ts"
+    },
+    {
+      "type": "audit",
+      "url": "https://github.com/MetaMask/delegation-framework/tree/main/audits"
+    },
+    {
+      "type": "onchain",
+      "url": "https://etherscan.io/address/0x63c0c19a282a1B52b07dD5a65b58948A07DAE32B#code"
+    }
+  ],
+  "review": {
+    "submittedBy": "claude-sonnet-5.5 \u2014 address taken from the vendor-controlled source(s) in `evidence` (fetched directly from GitHub, not relayed); codehash computed from `eth_getCode` at that address on mainnet via a public RPC, and cross-checked against the census cluster's normalizedCodehash. Same v1.3.0 release (DEPLOYMENTS_1_3_0) as the existing MetaMask entries.",
+    "reviewers": [
+      "claude-sonnet-5.5 (single automated pass)",
+      "NEEDS HUMAN REVIEW \u2014 see GOVERNANCE.md; not yet confirmed by a second maintainer"
+    ],
+    "date": "2026-10-10"
+  }
+}

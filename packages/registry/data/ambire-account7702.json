@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "kind": "delegate-implementation",
+  "name": "AmbireAccount7702",
+  "vendor": "Ambire",
+  "status": "recognized",
+  "match": {
+    "deployments": [
+      {
+        "chainId": 1,
+        "address": "0x5A7FC11397E9a8AD41BF10bf13F22B0a63f96f6d"
+      }
+    ],
+    "codehash": "0x386e55cb86f9a31fdb7926ceab54847aa4542b7a0517216144a956982a21ade3"
+  },
+  "decoder": null,
+  "evidence": [
+    {
+      "type": "vendor-docs",
+      "url": "https://github.com/AmbireTech/ambire-common/blob/v2/src/consts/deploy.ts"
+    },
+    {
+      "type": "source",
+      "url": "https://github.com/AmbireTech/ambire-common/blob/v2/contracts/AmbireAccount7702.sol"
+    },
+    {
+      "type": "audit",
+      "url": "https://github.com/AmbireTech/ambire-common/blob/v2/audits/Ambire-EIP-7702-Update-Hunter-Security-Audit-Report-0.1.pdf"
+    },
+    {
+      "type": "onchain",
+      "url": "https://etherscan.io/address/0x5A7FC11397E9a8AD41BF10bf13F22B0a63f96f6d#code"
+    }
+  ],
+  "review": {
+    "submittedBy": "claude-sonnet-5.5 \u2014 address taken from the vendor-controlled source(s) in `evidence` (fetched directly from GitHub, not relayed); codehash computed from `eth_getCode` at that address on mainnet via a public RPC, and cross-checked against the census cluster's normalizedCodehash. Note: the repo's current compiled binRuntime does NOT match this on-chain code (the repo has moved on since the May 2025 deployment); the address is vendor-confirmed, the codehash is from chain.",
+    "reviewers": [
+      "claude-sonnet-5.5 (single automated pass)",
+      "NEEDS HUMAN REVIEW \u2014 see GOVERNANCE.md; not yet confirmed by a second maintainer"
+    ],
+    "date": "2026-10-10"
+  }
+}

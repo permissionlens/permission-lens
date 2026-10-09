@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "kind": "delegate-implementation",
+  "name": "Simple7702Account (initial deployment)",
+  "vendor": "Ethereum Foundation (eth-infinitism account-abstraction)",
+  "version": "0.8.0",
+  "status": "recognized",
+  "match": {
+    "deployments": [
+      {
+        "chainId": 1,
+        "address": "0xe6Cae83BdE06E4c305530e199D7217f42808555B"
+      }
+    ],
+    "codehash": "0xcc7b633aef4b2543cb8f37522adf1a401f910f0f6b2430c1eecc11f401ccfcf3"
+  },
+  "decoder": null,
+  "evidence": [
+    {
+      "type": "vendor-docs",
+      "url": "https://github.com/eth-infinitism/account-abstraction/blob/d6fbc614c8/deployments/ethereum/Simple7702Account.json"
+    },
+    {
+      "type": "source",
+      "url": "https://github.com/eth-infinitism/account-abstraction/blob/develop/contracts/accounts/Simple7702Account.sol"
+    },
+    {
+      "type": "onchain",
+      "url": "https://etherscan.io/address/0xe6Cae83BdE06E4c305530e199D7217f42808555B#code"
+    }
+  ],
+  "review": {
+    "submittedBy": "claude-sonnet-5.5 \u2014 address taken from the vendor-controlled source(s) in `evidence` (fetched directly from GitHub, not relayed); codehash computed from `eth_getCode` at that address on mainnet via a public RPC, and cross-checked against the census cluster's normalizedCodehash. First deployment (block 22109939) listed in repo commit d6fbc614c8 (2025-03-24), superseded a day later by 0x4Cd241E8\u2026 with the same normalizedCodehash; kept because it carried real traffic at Pectra activation (census cluster, 9 authorizations in the first 1,000 blocks).",
+    "reviewers": [
+      "claude-sonnet-5.5 (single automated pass)",
+      "NEEDS HUMAN REVIEW \u2014 see GOVERNANCE.md; not yet confirmed by a second maintainer"
+    ],
+    "date": "2026-10-10"
+  }
+}

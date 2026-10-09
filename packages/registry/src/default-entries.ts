@@ -8,6 +8,10 @@ import metamaskNativeTokenTransferAmountEnforcer from "../data/metamask-native-t
 import metamaskRedeemerEnforcer from "../data/metamask-redeemer-enforcer-v1.3.0.json";
 import metamaskTimestampEnforcer from "../data/metamask-timestamp-enforcer-v1.3.0.json";
 import metamaskValueLteEnforcer from "../data/metamask-value-lte-enforcer-v1.3.0.json";
+import ambireAccount7702 from "../data/ambire-account7702.json";
+import ethInfinitismSimple7702Account from "../data/eth-infinitism-simple7702account-v0.8.0.json";
+import ethInfinitismSimple7702AccountInitialDeployment from "../data/eth-infinitism-simple7702account-v0.8.0-initial-deployment.json";
+import metamaskEip7702StatelessDelegator from "../data/metamask-eip7702-stateless-delegator-v1.3.0.json";
 import type { RawEntry } from "./index.js";
 
 /**
@@ -18,9 +22,13 @@ import type { RawEntry } from "./index.js";
  * `packages/registry/test` catches a drift between the two.
  */
 export const defaultEntries: RawEntry[] = [
+  ambireAccount7702,
+  ethInfinitismSimple7702Account,
+  ethInfinitismSimple7702AccountInitialDeployment,
   metamaskAllowedMethodsEnforcer,
   metamaskAllowedTargetsEnforcer,
   metamaskDelegationManager,
+  metamaskEip7702StatelessDelegator,
   metamaskErc20TransferAmountEnforcer,
   metamaskLimitedCallsEnforcer,
   metamaskLogicalOrWrapperEnforcer,
