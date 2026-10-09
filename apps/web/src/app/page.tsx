@@ -46,7 +46,7 @@ export default function Home() {
         <p>
           PermissionLens never says a grant is &quot;safe&quot; — only what a check did or didn&apos;t find. Source
           and registry on{" "}
-          <a href="https://github.com/DinVisel/permission-lens" target="_blank" rel="noreferrer noopener">
+          <a href="https://github.com/permissionlens/permission-lens" target="_blank" rel="noreferrer noopener">
             GitHub
           </a>
           .

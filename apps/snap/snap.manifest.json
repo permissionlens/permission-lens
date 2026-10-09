@@ -4,7 +4,7 @@
   "proposedName": "PermissionLens",
   "repository": {
     "type": "git",
-    "url": "https://github.com/DinVisel/permission-lens.git"
+    "url": "https://github.com/permissionlens/permission-lens.git"
   },
   "source": {
     "shasum": "wyKMdVmiNCgvWijE0IPywtkirIwbUp9gEInBKlQ4C5I=",

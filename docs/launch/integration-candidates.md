@@ -24,7 +24,7 @@ signing preview
 > nothing for them. The damage happens later, when the delegate or session
 > key gets used.
 >
-> [PermissionLens](https://github.com/DinVisel/permission-lens) is an
+> [PermissionLens](https://github.com/permissionlens/permission-lens) is an
 > offline decoder for these three: it turns the raw authorization/typed data
 > into a plain-language "what authority does this grant" summary plus
 > evidence-backed risk findings (unrecognized delegate, unbounded caveats,
@@ -53,7 +53,7 @@ requests
 > delegation/permission requests don't have a state-change effect to
 > simulate at sign time.
 >
-> [PermissionLens](https://github.com/DinVisel/permission-lens) decodes
+> [PermissionLens](https://github.com/permissionlens/permission-lens) decodes
 > those three offline into an authority summary + risk findings
 > (`@permissionlens/core`, `viem` peer dep only, no network calls unless you
 > opt into `@permissionlens/onchain` enrichment).

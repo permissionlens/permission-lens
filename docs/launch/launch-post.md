@@ -63,7 +63,7 @@ directly — see [`CONTRIBUTING.md`](../../CONTRIBUTING.md) and
 
 ## Links
 
-- Repo: https://github.com/DinVisel/permission-lens
+- Repo: https://github.com/permissionlens/permission-lens
 - Integration guide: [`docs/integration-guide.md`](../integration-guide.md)
 - Rules reference: [TODO: link to the deployed `docs/rules` site from apps/web]
 

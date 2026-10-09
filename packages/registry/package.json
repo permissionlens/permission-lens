@@ -5,11 +5,11 @@
   "license": "MIT OR Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DinVisel/permission-lens.git",
+    "url": "git+https://github.com/permissionlens/permission-lens.git",
     "directory": "packages/registry"
   },
-  "homepage": "https://github.com/DinVisel/permission-lens/tree/main/packages/registry#readme",
-  "bugs": "https://github.com/DinVisel/permission-lens/issues",
+  "homepage": "https://github.com/permissionlens/permission-lens/tree/main/packages/registry#readme",
+  "bugs": "https://github.com/permissionlens/permission-lens/issues",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
