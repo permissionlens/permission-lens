@@ -70,6 +70,8 @@ jobs:
       - uses: foundry-rs/foundry-toolchain@v1
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
+      # contracts/generated is gitignored, and forge's writeJson won't create it.
+      - run: mkdir -p contracts/generated
       - run: forge script script/GenerateFixtures.s.sol -vvv
         working-directory: contracts
       - run: pnpm build:fixtures

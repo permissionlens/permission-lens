@@ -13,7 +13,10 @@ still an external, real-world action nobody has taken yet).
       (changesets + `pnpm release`, `id-token: write`, `NPM_CONFIG_PROVENANCE`).
       Still needs: an `NPM_TOKEN` secret with publish access, a first
       `pnpm changeset`, and someone to actually merge the resulting
-      "Version Packages" PR. Nothing has been published.
+      "Version Packages" PR. Nothing has been published. The release job is
+      gated on the repo variable `RELEASE_ENABLED=true`: without a changeset,
+      `changeset publish` would publish `0.0.0` of every package on any push
+      to `main`, so set the variable only when the first changeset is ready.
 - [ ] Launch post: problem, demo, census findings, call for registry contributors.
       Drafted at [`docs/launch/launch-post.md`](../launch/launch-post.md) —
       the census-findings section is still a placeholder: `tools/census`

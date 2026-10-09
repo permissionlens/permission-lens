@@ -4,6 +4,12 @@ name: Release
 # `npm publish --provenance` from CI only"). Changesets opens/updates a
 # "Version Packages" PR on every push to main with pending changesets;
 # merging that PR runs this workflow again and publishes.
+#
+# Gated on the repo variable RELEASE_ENABLED (Settings -> Secrets and
+# variables -> Actions -> Variables). Without a changeset, `changeset publish`
+# publishes every package whose version isn't on npm yet — today that's
+# 0.0.0 of all four. Set RELEASE_ENABLED=true only once the first changeset
+# and the registry review are in.
 on:
   push:
     branches: [main]
@@ -12,6 +18,7 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   release:
+    if: vars.RELEASE_ENABLED == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: write
