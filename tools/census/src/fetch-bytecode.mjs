@@ -1,3 +1,4 @@
+import { withRetry } from "./retry.mjs";
 /**
  * Fetches runtime bytecode for a set of addresses, deduplicated, with
  * bounded concurrency. Addresses with no code (an EOA, or one that never
@@ -20,13 +21,10 @@ export async function fetchBytecodeForAddresses({ client, addresses, blockNumber
     const chunk = unique.slice(i, i + concurrency);
     const codes = await Promise.all(
       chunk.map(async (address) => {
-        try {
-          const code = await client.getCode({ address: /** @type {`0x${string}`} */ (address), blockNumber });
-          return code ?? "0x";
-        } catch (err) {
-          console.error(`census: failed to fetch code for ${address}: ${/** @type {Error} */ (err).message}`);
-          return "0x";
-        }
+        // A lookup that fails after retries must not become "0x": that would file
+        // a real delegate under "no code". Let the error abort the run instead.
+        const code = await withRetry(() => client.getCode({ address: /** @type {`0x${string}`} */ (address), blockNumber }));
+        return code ?? "0x";
       }),
     );
     chunk.forEach((address, idx) => result.set(address, codes[idx]));

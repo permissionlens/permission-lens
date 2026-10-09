@@ -1,4 +1,5 @@
 import { normalizeAuthorization } from "@permissionlens/core";
+import { withRetry } from "./retry.mjs";
 
 /**
  * One EIP-7702 authorization tuple observed in a mined type-0x04
@@ -16,19 +17,22 @@ import { normalizeAuthorization } from "@permissionlens/core";
 /**
  * Scans `[fromBlock, toBlock]` (inclusive) for type-0x04 transactions and
  * flattens every authorization tuple in each one into a {@link CensusRecord}.
- * Per-block RPC failures are logged and skipped rather than aborting the
- * whole scan — a single bad block shouldn't lose the rest of a long range.
+ * Each block fetch is retried with backoff (rate limits are expected on long
+ * ranges). If any block still fails, the scan throws after finishing the
+ * range, listing the failed blocks — a census with silent gaps is worse than
+ * no census, so partial results are never returned.
  *
  * @param {{
  *   client: import("viem").PublicClient,
  *   fromBlock: bigint,
  *   toBlock: bigint,
  *   concurrency?: number,
+ *   retryDelayMs?: number,
  *   onProgress?: (current: bigint, total: bigint) => void,
  * }} opts
  * @returns {Promise<CensusRecord[]>}
  */
-export async function scanBlockRange({ client, fromBlock, toBlock, concurrency = 8, onProgress }) {
+export async function scanBlockRange({ client, fromBlock, toBlock, concurrency = 8, retryDelayMs = 500, onProgress }) {
   if (toBlock < fromBlock) {
     throw new Error(`toBlock (${toBlock}) is before fromBlock (${fromBlock})`);
   }
@@ -39,15 +43,18 @@ export async function scanBlockRange({ client, fromBlock, toBlock, concurrency =
   const total = BigInt(blockNumbers.length);
   let done = 0n;
   const records = [];
+  /** @type {bigint[]} */
+  const failed = [];
 
   for (let i = 0; i < blockNumbers.length; i += concurrency) {
     const chunk = blockNumbers.slice(i, i + concurrency);
     const blocks = await Promise.all(
       chunk.map(async (blockNumber) => {
         try {
-          return await client.getBlock({ blockNumber, includeTransactions: true });
+          return await withRetry(() => client.getBlock({ blockNumber, includeTransactions: true }), { baseDelayMs: retryDelayMs });
         } catch (err) {
-          console.error(`census: failed to fetch block ${blockNumber}: ${/** @type {Error} */ (err).message}`);
+          console.error(`census: giving up on block ${blockNumber}: ${/** @type {Error} */ (err).message.split("\n")[0]}`);
+          failed.push(blockNumber);
           return null;
         }
       }),
@@ -58,6 +65,14 @@ export async function scanBlockRange({ client, fromBlock, toBlock, concurrency =
       done += 1n;
       onProgress?.(done, total);
     }
+  }
+
+  if (failed.length > 0) {
+    throw new Error(
+      `${failed.length} block(s) could not be fetched after retries, so the census would have gaps: ` +
+        `${failed.slice(0, 20).join(", ")}${failed.length > 20 ? ", …" : ""}. ` +
+        `Lower --concurrency or use a higher-limit RPC, then re-run.`,
+    );
   }
 
   return records;

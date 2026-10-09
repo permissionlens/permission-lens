@@ -19,13 +19,15 @@ program
   .option("--rpc <url>", "RPC URL to scan a live block range")
   .option("--from-block <n>", "first block to scan (required with --rpc)", parseBigInt)
   .option("--to-block <n>", "last block to scan (default: latest, with --rpc)", parseBigInt)
+  .option("--concurrency <n>", "parallel block requests (lower this if the RPC rate-limits you)", (v) => Number.parseInt(v, 10), 4)
   .option("--input <path>", "a CSV of pre-collected records (e.g. a Dune export) with columns: blockNumber,txHash,chainId,delegate[,sender]")
   .requiredOption("--out <path>", "where to write the cluster ranking CSV")
   .option("--min-count <n>", "drop clusters seen fewer than this many times", (v) => Number.parseInt(v, 10), 1)
   .action(main);
 
 program.parseAsync(process.argv).catch((err) => {
-  console.error(err);
+  // RPC URLs usually embed an API key and viem puts them in error text.
+  console.error(String(err?.message ?? err).replace(/https?:\/\/\S+/g, "<rpc-url>"));
   process.exitCode = 1;
 });
 
@@ -42,7 +44,7 @@ async function main(opts) {
   let client;
 
   if (opts.rpc) {
-    client = createPublicClient({ transport: http(opts.rpc) });
+    client = createPublicClient({ transport: http(opts.rpc, { retryCount: 0 }) });
 
     if (opts.fromBlock === undefined) {
       console.error("--from-block is required with --rpc.");
@@ -51,11 +53,12 @@ async function main(opts) {
     }
     const toBlock = opts.toBlock ?? (await client.getBlockNumber());
 
-    console.error(`census: scanning blocks ${opts.fromBlock}..${toBlock} on ${opts.rpc}`);
+    console.error(`census: scanning blocks ${opts.fromBlock}..${toBlock} on ${new URL(opts.rpc).host}`);
     const rpcRecords = await scanBlockRange({
       client,
       fromBlock: opts.fromBlock,
       toBlock,
+      concurrency: opts.concurrency,
       onProgress: throttledProgress(),
     });
     console.error(`census: found ${rpcRecords.length} authorization(s) across the range`);
