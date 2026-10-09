@@ -39,7 +39,7 @@ decodes that scope into plain language before they sign.
 - A CC0 registry of recognized / caution / malicious delegates and
   enforcers, keyed by normalized codehash, with a written
   [governance and evidence bar](https://github.com/permissionlens/permission-lens/blob/main/GOVERNANCE.md).
-  15 entries today: MetaMask's Delegation Framework v1.3.0 (manager,
+  14 entries today: MetaMask's Delegation Framework v1.3.0 (manager,
   enforcers, and its 7702 delegate), Ambire's 7702 account, and the Ethereum
   Foundation's `Simple7702Account`. Each cites the vendor's own repo for the
   address.
