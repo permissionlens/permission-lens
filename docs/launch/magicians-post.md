@@ -43,7 +43,7 @@ decodes that scope into plain language before they sign.
   `onchain` (optional enrichment through a viem client), `cli`, and a
   MetaMask Snap.
 
-**Demo.** [TODO: hosted web app link]
+**Demo.** https://permission-lens-web.vercel.app — paste a request and see the decoded grant and findings. Decoding runs in the browser; nothing you paste is sent anywhere.
 
 **Honest limits.**
 - The rules say "unrecognized", not "unsafe". A missing registry entry is a

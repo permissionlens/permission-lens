@@ -21,9 +21,9 @@ signature happens.
 
 ## The demo
 
-[TODO: link to the hosted web app once Phase 4's `apps/web` is deployed, and/or a
-terminal recording of `permissionlens decode` on a captured phishing
-authorization.]
+Try it: https://permission-lens-web.vercel.app (paste a request, or check an address).
+[TODO: optionally add a terminal recording of `permissionlens decode` on a
+captured phishing authorization.]
 
 ## Census findings
 
@@ -65,7 +65,7 @@ directly — see [`CONTRIBUTING.md`](../../CONTRIBUTING.md) and
 
 - Repo: https://github.com/permissionlens/permission-lens
 - Integration guide: [`docs/integration-guide.md`](../integration-guide.md)
-- Rules reference: [TODO: link to the deployed `docs/rules` site from apps/web]
+- Rules reference: https://permission-lens-web.vercel.app/rules
 
 ## Where to post
 
