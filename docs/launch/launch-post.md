@@ -40,8 +40,8 @@ placeholder numbers.]
 - `@permissionlens/core` — offline parsers, IR and risk rules for
   EIP-7702, ERC-7710 and ERC-7715.
 - `@permissionlens/registry` — CC0-licensed recognized/caution/malicious
-  delegate and enforcer data (11 real entries as of this writing, seeded
-  from MetaMask's Delegation Framework v1.3.0, plus 2 example fixtures used
+  delegate and enforcer data (14 real entries as of this writing, seeded
+  from MetaMask's Delegation Framework v1.3.0, Ambire and the EF's `Simple7702Account`, plus 2 example fixtures used
   in tests — re-run `ls packages/registry/data | wc -l` before publishing
   and drop the examples from the count).
 - `@permissionlens/onchain` — optional enrichment via a viem `PublicClient`.
